@@ -10,6 +10,8 @@ require('dotenv').config();
 
 // mongoose.connect(`mongodb+srv://jaybays:${password}@swytch-db-obf3f.mongodb.net/test?retryWrites=true&w=majority`);
 
+const authRoutes = require('./routes/auth');
+
 const app = express();
 
 app.use((req,res,next)=>{
