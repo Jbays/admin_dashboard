@@ -11,7 +11,7 @@ require('dotenv').config();
 // mongoose.connect(`mongodb+srv://jaybays:${password}@swytch-db-obf3f.mongodb.net/test?retryWrites=true&w=majority`);
 
 const authRoutes = require('./routes/auth');
-const devicesRoutes = require('./routes/devices');
+const devicesRoutes = require('./routes/device');
 
 const app = express();
 
