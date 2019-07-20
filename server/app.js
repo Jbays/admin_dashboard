@@ -36,11 +36,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/auth',authRoutes);
+
 app.use((error, req, res, next) =>{
   console.error(`error from server: ${error}`);
   const status = error.statusCode || 500;
   const message = error.message;
   const data = error.data;
+  //this line results in this error: TypeError: res.status(...).join is not a function
   res.status(status).join({message:message,data:data});
 })
 
