@@ -21,9 +21,7 @@ function createNewDevice(req,res,next){
     
     if (existingDevice){
       return res.status(422).send({error:"That device name is already in use.  Please choose a unique device name"});
-    }
-
-     else {
+    } else {
       const device = new Device({
         name:name,
         lon,
