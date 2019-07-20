@@ -13,41 +13,40 @@ function createNewDevice(req,res,next){
   if ( !name ) {
     return res.status(422).send({ error: "Your device requres a name" });
   }
-
+  
   Device.findOne({name},(err,existingDevice)=>{
     if (err){
       return next(err);
     }
-
+    
     if (existingDevice){
       return res.status(422).send({error:"That device name is already in use.  Please choose a unique device name"});
     }
 
-    //this doesn't work --> device is ending up undefined for some reason
-  //   const device = new Device({
-  //     name:name,
-  //     // lon,
-  //     // lat,
-  //     // capacity,
-  //     // country,
-  //     // devType,
-  //     // source
-  //   })
+     else {
+      const device = new Device({
+        name:name,
+        lon,
+        lat,
+        capacity,
+        country,
+        devType,
+        source
+      });
+
+      device.save((err)=>{
+         if(err){ 
+           return next(err);
+         }
+     
+         res.json({
+           deviceId:device._id,
+           name:name,
+           note:'you successfully created a new device'
+         });
+       });
+     }
   })
-
-  const device = new Device({name:"second_device"});
-
-  device.save((err)=>{
-    if(err){ 
-      return next(err);
-    }
-    res.json({
-      deviceId:device._id,
-      name:name,
-      note:"you created your new device"    
-    })
-  })
-
 }
 
 module.exports = {
