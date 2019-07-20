@@ -53,7 +53,7 @@ function signup(req, res, next) {
         if (err) {
           return next(err);
         }
-        // Repond to request indicating the user was created
+        // Respond to request indicating the user was created
         res.json({
           userId: user._id,
           username: username,

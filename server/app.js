@@ -11,6 +11,7 @@ require('dotenv').config();
 // mongoose.connect(`mongodb+srv://jaybays:${password}@swytch-db-obf3f.mongodb.net/test?retryWrites=true&w=majority`);
 
 const authRoutes = require('./routes/auth');
+const devicesRoutes = require('./routes/devices');
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/auth',authRoutes);
+app.use('/devices',devicesRoutes);
 
 app.use((error, req, res, next) =>{
   console.error(`error from server: ${error}`);
